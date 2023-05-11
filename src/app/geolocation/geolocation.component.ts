@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
-import {} from 'googlemaps';
+import { } from 'googlemaps';
 import { CacheLocationService } from '../services/cache-location.service';
 
 @Component({
@@ -13,11 +13,8 @@ export class GeolocationComponent {
   map: google.maps.Map | undefined;
   cacheList:any = [];
 
-  constructor(private cacheLocationService: CacheLocationService) {
-    this.cacheLocationService.getCacheLocationList().subscribe(data =>{
-      this.cacheList = data;
-    });
-  }
+  constructor(private cacheLocationService: CacheLocationService) { }
+
   ngOnInit() {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser");
@@ -30,13 +27,57 @@ export class GeolocationComponent {
   geoFindMe() {
     navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords;
-
+      const coordinates = new google.maps.LatLng(latitude, longitude);
       const mapProperties = {
-        center: new google.maps.LatLng(latitude, longitude),
+        center: coordinates,
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(this.mapContainer.nativeElement, mapProperties);
+      this.addLocationMarker(coordinates, "You are here!");
+
+      this.findNearbyCacheLocations(latitude, longitude, mapProperties);
     }, () => alert("Unable to retrieve your location"));
+  }
+
+  findNearbyCacheLocations(latitude: number, longitude: number, mapProperties: any) {
+    this.cacheLocationService.getCacheLocationList(latitude, longitude).subscribe({
+      next: (data) => {
+        this.cacheList = data;
+        this.loadCacheLocationMarkers();
+      },
+      error: (error) => {
+        console.error('Error getting cache locations:', error);
+      }
+    });
+  }
+
+  loadCacheLocationMarkers() {
+    this.cacheList.forEach((cacheInfo: { latitude: number; longitude: number; name: string; }) => {
+     const coordinates = new google.maps.LatLng(cacheInfo.latitude, cacheInfo.longitude);
+     this.addLocationMarker(coordinates, cacheInfo.name);
+    });
+  }
+
+  addLocationMarker(coordinates: google.maps.LatLng, name: string) {
+    //Creating a new marker object
+    const marker = new google.maps.Marker({
+      position: coordinates,
+      map: this.map,
+      title: name,
+    });
+    this.addLocationClickEvent(marker);
+    //Adding marker to google map
+    marker.setMap(this.map??null);
+  }
+
+  addLocationClickEvent(marker: google.maps.Marker) {
+    //Adding Click event to default marker
+    marker.addListener("click", () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: marker.getTitle()??undefined
+      });
+      infoWindow.open(marker.getMap()??undefined, marker);
+    });
   }
 }
