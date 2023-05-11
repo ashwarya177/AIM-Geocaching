@@ -2,24 +2,25 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { APIUrl } from 'src/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CacheLocationService {
-  readonly APIUrl = "https://localhost:7159/api";
   constructor(private http: HttpClient) { }
 
-  getCacheLocationList(latitude: number, longitude: number): Observable<any> {
+  // Function to return nearby Cache Locations to the User from the Backend
+  getCacheLocationList(userLatitude: number, userLongitude: number): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       }),
       params: new HttpParams()
-      .set('lat', latitude)
-      .set('lon', longitude)
+      .set('lat', userLatitude)
+      .set('lon', userLongitude)
     };
-    return this.http.get(this.APIUrl + '/CacheLocation', httpOptions);
+    return this.http.get(APIUrl + '/CacheLocation', httpOptions);
   }
 }

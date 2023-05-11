@@ -1,7 +1,9 @@
-<p>Hello</p>
-<div #map style="width:800px;height: 400px;"></div>
-<tr *ngFor="let dataItem of cacheList">
-    <td>{{dataItem.latitude}}</td>
-    <td>{{dataItem.longitude}}</td>
-    <td>{{dataItem.name}}</td>
-</tr>
+<div id="main">
+    <h3>Geocaching is an outdoor recreational activity, 
+        in which participants use a Global Positioning System receiver or mobile device and other navigational techniques to hide and seek containers, 
+        called "geocaches" or "caches", at specific locations marked by coordinates all over the world.
+    </h3>
+    <h2>The map below shows Cache Locations near you!</h2>
+    <p>(Click on a location marker to see more information about the Cache. Zoom-in or out to see more caches.)</p>
+    <div #map class="cache-map"></div>
+</div>
