@@ -13,6 +13,7 @@ export class GeolocationComponent {
   @ViewChild('map', {static: false}) mapContainer: any;
   map: google.maps.Map | undefined;
   cacheList:any = [];
+  gmarkers: any = [];
 
   constructor(private cacheLocationService: CacheLocationService) { }
 
@@ -40,15 +41,17 @@ export class GeolocationComponent {
       };
       this.map = new google.maps.Map(this.mapContainer.nativeElement, mapProperties);
       this.addLocationMarker(coordinates, "You are here!");
-      
       // Find the nearby Cache Locations
-      this.findNearbyCacheLocations(latitude, longitude);
+      this.findNearbyCacheLocations(this.map?.getBounds() ?? undefined);
+      this.map.addListener("zoom_changed", () => {
+        this.findNearbyCacheLocations(this.map?.getBounds() ?? undefined);
+      });
     }, () => alert("Unable to retrieve your location"));
   }
 
-  findNearbyCacheLocations(latitude: number, longitude: number) {
+  findNearbyCacheLocations(bounds?: google.maps.LatLngBounds) {
     // Call Backend to get nearby Cache List
-    this.cacheLocationService.getCacheLocationList(latitude, longitude).pipe(take(1)).subscribe({
+    this.cacheLocationService.getCacheLocationList(bounds?.getSouthWest(), bounds?.getNorthEast()).pipe(take(1)).subscribe({
       next: (data) => {
         this.cacheList = data;
         // Add Map markers for all cache locations in cacheList

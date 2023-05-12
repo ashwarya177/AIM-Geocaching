@@ -11,15 +11,17 @@ export class CacheLocationService {
   constructor(private http: HttpClient) { }
 
   // Function to return nearby Cache Locations to the User from the Backend
-  getCacheLocationList(userLatitude: number, userLongitude: number): Observable<any> {
+  getCacheLocationList(boundsSW?: google.maps.LatLng, boundsNE?: google.maps.LatLng): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       }),
       params: new HttpParams()
-      .set('lat', userLatitude)
-      .set('lon', userLongitude)
+      .set('latSW', boundsSW?.lat() ?? '')
+      .set('lonSW', boundsSW?.lng() ?? '')
+      .set('latNE', boundsNE?.lat() ?? '')
+      .set('lonNE', boundsNE?.lng() ?? '')
     };
     return this.http.get(APIUrl + '/CacheLocation', httpOptions);
   }
