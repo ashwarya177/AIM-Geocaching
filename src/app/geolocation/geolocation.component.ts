@@ -41,7 +41,7 @@ export class GeolocationComponent {
       };
       this.map = new google.maps.Map(this.mapContainer.nativeElement, mapProperties);
       this.addLocationMarker(coordinates, "You are here!");
-      // Find the nearby Cache Locations
+      // Find the Cache Locations based on the map bounds
       this.findNearbyCacheLocations(this.map?.getBounds() ?? undefined);
       this.map.addListener("zoom_changed", () => {
         this.findNearbyCacheLocations(this.map?.getBounds() ?? undefined);
