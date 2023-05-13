@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  aim-geocaching:
+    image: ${DOCKER_REGISTRY-}aimgeocachingfrontend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+    - "4000:80"
