@@ -23,9 +23,15 @@ Follow these steps to get the Angular app up and running:
 ## Configuration
 The application can be configured using the following variables in /src/constants.ts file:
 
-APIUrl: The URL of the backend API. By default, it is set to https://localhost:7152/api. 
+1. APIUrl: The URL of the backend API. By default, it is set to https://localhost:7152/api. 
 
-Modify this value if your API is hosted elsewhere.
+   Modify this value if your API is hosted elsewhere.
+
+2. Use your Google Maps API key in '/src/index.html' to acces the Map component of this app upon running.
+
+   Replace the 'YOUR_KEY_GOES_HERE' with your actual key.
+
+   You can get more info on how to create one here - https://developers.google.com/maps/documentation/javascript/get-api-key
 
 ## Code scaffolding
 
