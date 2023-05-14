@@ -23,7 +23,7 @@ Follow these steps to get the Angular app up and running:
 # Configuration
 The application can be configured using the following variables in /src/constants.ts file:
 
-APIUrl: The URL of the backend API. By default, it is set to http://localhost:7152/api. 
+APIUrl: The URL of the backend API. By default, it is set to https://localhost:7152/api. 
 
 Modify this value if your API is hosted elsewhere.
 
