@@ -15,8 +15,8 @@ Before running the application, ensure that you have the following software inst
 Follow these steps to get the Angular app up and running:
 
 1. Clone the repository: git clone https://github.com/ashwarya177/AIM-Geocaching.git
-2. Navigate to the project directory: cd Aim-Geocaching
-3. Install the dependencies: npm install
+2. Navigate to the project directory: `cd Aim-Geocaching`
+3. Install the dependencies: `npm install`
 4. Start the development server: Run `ng serve` for a dev server. 
 5. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
@@ -29,7 +29,7 @@ The application can be configured using the following variables in /src/constant
 
 2. Use your Google Maps API key in '/src/index.html' to acces the Map component of this app upon running.
 
-   Replace the 'YOUR_KEY_GOES_HERE' with your actual key.
+   Replace the `YOUR_KEY_GOES_HERE` with your actual key.
 
    You can get more info on how to create one here - https://developers.google.com/maps/documentation/javascript/get-api-key
 
