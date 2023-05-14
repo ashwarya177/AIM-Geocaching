@@ -20,7 +20,7 @@ Follow these steps to get the Angular app up and running:
 4. Start the development server: Run `ng serve` for a dev server. 
 5. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-# Configuration
+## Configuration
 The application can be configured using the following variables in /src/constants.ts file:
 
 APIUrl: The URL of the backend API. By default, it is set to https://localhost:7152/api. 
