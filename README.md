@@ -1,10 +1,31 @@
 # AIMGeocaching
+Geocaching is an outdoor activity where participants use a GPS receiver or mobile device to locate “caches” which are usually weather resistant containers with various objects hidden inside. Upon finding a cache, the participant records the find online, or signs a logbook that is sometimes kept in the cache. This repo contains the frontend of a web based mobile application for a subset of the traditional geocaching experience.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Before running the application, ensure that you have the following software installed on your machine:
+
+- Node.js: [link to download](https://nodejs.org/)
+- Angular CLI: [link to installation guide](https://angular.io/cli)
+
+## Getting Started
+
+Follow these steps to get the Angular app up and running:
+
+1. Clone the repository: git clone https://github.com/ashwarya177/AIM-Geocaching.git
+2. Navigate to the project directory: cd Aim-Geocaching
+3. Install the dependencies: npm install
+4. Start the development server: Run `ng serve` for a dev server. 
+5. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+# Configuration
+The application can be configured using the following variables in /src/constants.ts file:
+
+APIUrl: The URL of the backend API. By default, it is set to http://localhost:7152/api. 
+
+Modify this value if your API is hosted elsewhere.
 
 ## Code scaffolding
 
@@ -13,14 +34,6 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 
