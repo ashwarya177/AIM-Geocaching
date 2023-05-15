@@ -20,6 +20,11 @@ Follow these steps to get the Angular app up and running:
 4. Start the development server: Run `ng serve` for a dev server. 
 5. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+## Navigating Code
+Entrypoint to this app is from '/src/index.html' file. 
+
+The '/src/app' folder contains all feature implementation code.
+
 ## Configuration
 The application can be configured using the following variables in /src/constants.ts file:
 
